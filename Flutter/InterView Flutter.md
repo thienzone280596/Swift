@@ -136,8 +136,38 @@ Thông thường có 3 cách điều hướng màn hình trong Flutter:
 
 ### 14. Giải thích về Bloc Pattern
 
-BLoC là 1 pattern cho việc quản lý state được đề xuất bởi Google developers dành cho các ứng dụng Flutter. BloC có những điểm tương đồng với 2 patterns nổi tiếng là MVP và MVVM với mục đích chung là tách phần source code business logic ra khỏi phần xử lý UI. BLoC viết tắt cho Business Logic Component đóng vai trò tương tự như Presenter hay ViewModel trong mô hình MVP và MVVM tương ứng.
+Bloc (Business Logic Component) Pattern là một kiến trúc phổ biến trong phát triển ứng dụng, đặc biệt là trong Flutter, để quản lý trạng thái của ứng dụng một cách rõ ràng và có cấu trúc. Dưới đây là các khái niệm chính và cách hoạt động của Bloc Pattern:
 
-![Giải thích về Bloc Pattern](https://topdev.vn/blog/wp-content/uploads/2023/04/Bloc-Pattern.png)
+### 1. **Event (Sự kiện)**
 
-BLoC đóng vai trò quản lý các biến states (trạng thái) trên màn hình, UI sẽ lắng nghe sự thay đổi giá trị của các biến states đến từ BLoC class để render hiển thị cho người dùng. Khi có sự tương tác của người dùng với UI, thông qua các events, BLoC sẽ nhận tín hiệu và xử lý logic tương tác với tầng dữ liệu (gửi request và nhận response) tương ứng. Để triển khai pattern này, Flutter sử dụng StreamController với việc các Input sẽ được thêm vào sink của StreamController và phía UI sử dụng stream để lắng nghe nhận state mỗi khi có event được add vào sink.
+- Đây là các hành động hoặc sự kiện được kích hoạt từ giao diện người dùng (UI) hoặc từ các nguồn khác.
+- Mỗi sự kiện thường đại diện cho một hành động cụ thể, chẳng hạn như nhấn nút, thay đổi giá trị của một trường nhập liệu, hoặc tải dữ liệu từ một API.
+
+### 2. **State (Trạng thái)**
+
+- Trạng thái đại diện cho tình trạng hiện tại của ứng dụng hoặc một phần của ứng dụng.
+- Mỗi thay đổi trong ứng dụng sẽ dẫn đến một trạng thái mới, và giao diện người dùng sẽ được cập nhật dựa trên trạng thái này.
+
+### 3. **Bloc**
+
+- Bloc là nơi xử lý các sự kiện và quản lý trạng thái.
+- Khi một sự kiện được kích hoạt, Bloc sẽ nhận sự kiện đó, thực hiện các tác vụ cần thiết (như truy xuất dữ liệu từ API, xử lý logic), và sau đó phát ra trạng thái mới.
+- Bloc đóng vai trò trung gian giữa UI và dữ liệu/logic của ứng dụng, giúp tách biệt giao diện người dùng với logic kinh doanh.
+
+### 4. **Stream**
+
+- Bloc sử dụng các Stream để phát ra sự kiện và trạng thái.
+- Các Widget trong Flutter sẽ lắng nghe (listen) các Stream này để cập nhật giao diện khi có sự thay đổi trạng thái.
+
+### Cách Bloc Pattern hoạt động
+
+1. **Sự kiện được kích hoạt:** Người dùng thực hiện một hành động (như nhấn nút) và sự kiện này được gửi đến Bloc.
+2. **Bloc xử lý sự kiện:** Bloc nhận sự kiện, thực hiện các xử lý cần thiết (như gọi API, tính toán, xử lý logic) và phát ra trạng thái mới.
+3. **Cập nhật giao diện:** Các Widget lắng nghe trạng thái từ Bloc sẽ nhận trạng thái mới và cập nhật giao diện tương ứng.
+
+### Lợi ích của Bloc Pattern
+
+- **Tách biệt rõ ràng:** Tách biệt rõ ràng giữa logic kinh doanh và giao diện người dùng.
+- **Quản lý trạng thái dễ dàng:** Quản lý trạng thái một cách nhất quán và có cấu trúc.
+- **Tái sử dụng:** Dễ dàng tái sử dụng logic kinh doanh giữa các phần khác nhau của ứng dụng.
+- **Dễ kiểm thử:** Dễ dàng kiểm thử logic kinh doanh mà không cần phụ thuộc vào giao diện người dùng.
