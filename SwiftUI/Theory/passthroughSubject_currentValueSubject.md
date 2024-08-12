@@ -10,7 +10,7 @@ In SwiftUI, using Combine for reactive programming involves understanding the di
 
 - **Example**:
 
-  ```
+  ```swift
   
   import Combine
   
@@ -46,9 +46,8 @@ In SwiftUI, using Combine for reactive programming involves understanding the di
 
 - **Example**:
 
-  ```
-  swift
-  Sao chép mã
+  ```swift
+  
   import Combine
   
   let currentValueSubject = CurrentValueSubject<String, Never>("Initial Value")
