@@ -15,5 +15,7 @@
         <page name='Combine_networking_request'/>
         <page name='CombiningOperator'/>
         <page name='CustomOperator'/>
+        <page name='Debugging'/>
+        <page name='TestingCombine'/>
     </pages>
 </playground>
