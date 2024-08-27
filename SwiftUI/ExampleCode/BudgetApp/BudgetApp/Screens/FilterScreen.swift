@@ -17,6 +17,52 @@ struct FilterScreen: View {
   @State private var title:String = ""
   @State private var startDate = Date()
   @State private var endDate = Date()
+  @State private var selectedSortOption:SortOptions? = nil
+  @State private var selectedSortDirection:SortDirection? = nil
+
+  private enum SortDirection:CaseIterable, Identifiable {
+    case asc
+    case desc
+    var id:SortDirection {
+      return self
+    }
+
+    var title: String {
+      switch self {
+      case .asc:
+        return "Ascending"
+      case .desc:
+        return "Descending"
+      }
+    }
+  }
+
+  private enum SortOptions: CaseIterable, Identifiable {
+    case title
+    case date
+    var id: SortOptions {
+      return self
+    }
+
+    var title: String {
+      switch self {
+      case .title:
+        return "Title"
+      case .date:
+        return "Date"
+      }
+    }
+
+    var key:String {
+      switch self {
+      case .title:
+        return "title"
+      case .date:
+        return "dateCreated"
+      }
+    }
+  }
+
   @FetchRequest(sortDescriptors: []) private var expenses:FetchedResults<Expense>
 
   private func filterTags() {
@@ -66,8 +112,48 @@ struct FilterScreen: View {
     }
   }
 
+   // TODO: - performSort
+  private func performSort() {
+    guard let sortOption = selectedSortOption else { return}
+    let request = Expense.fetchRequest()
+    request.sortDescriptors = [NSSortDescriptor(key: sortOption.key, ascending: selectedSortDirection == .asc ? true :false)]
+
+    do {
+      filteredExpenses = try context.fetch(request)
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
+
     var body: some View {
       List {
+        Section("Sort") {
+          Picker("Sort Options", selection: $selectedSortOption) {
+            Text("Select").tag(Optional<SortOptions>(nil))
+            ForEach(SortOptions.allCases) {
+              option in
+              Text(option.title)
+                .tag(Optional(option))
+            }
+          }
+
+
+          Picker("Sort Direction", selection: $selectedSortDirection) {
+            Text("Select").tag(Optional<SortDirection>(nil))
+            ForEach(SortDirection.allCases) {
+              direction in
+              Text(direction.title)
+                .tag(Optional(direction))
+            }
+          }
+
+          Button {
+            performSort()
+          } label: {
+            Text("Sort")
+          }
+
+        }
         //filter by Tag
         Section("Filter By Tag") {
           TagView(selectedTags: $selectedTags)
@@ -103,11 +189,13 @@ struct FilterScreen: View {
           }
         }
 
-        ForEach(filteredExpenses) {
-          expense in
-          ExpenseCellView(expense: expense)
+        Section("Expense") {
+          ForEach(filteredExpenses) {
+            expense in
+            ExpenseCellView(expense: expense)
+          }
         }
-        Spacer()
+
         HStack {
           Spacer()
           Button {
