@@ -19,16 +19,6 @@ struct BudgetDetailScreen: View {
     !title.isEmptyOrWhitespace && amount != nil && Double(amount!) > 0 && !selectedTags.isEmpty
   }
 
-  private var total:Double {
-    return expenses.reduce(0){ result, expense in
-      expense.amount + result
-    }
-  }
-  //remaining còn lại
-  private var remaining:Double {
-    budget.limit - total
-  }
-
   private func addExpense() {
     let expense = Expense(context:context)
     expense.title = title
@@ -68,7 +58,7 @@ struct BudgetDetailScreen: View {
 
   var body: some View {
     VStack {
-      Text(budget.limit, format: .currency(code: Locale.currentcyCode))
+      Text(budget.limit, format: .currency(code: Locale.currencyCode))
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
     }
@@ -92,16 +82,16 @@ struct BudgetDetailScreen: View {
       Section("Expense") {
         VStack(alignment:.leading) {
           HStack {
-            Spacer()
-            Text("Total")
-            Text(total, format: .currency(code: Locale.currentcyCode))
-            Spacer()
+              Spacer()
+              Text("Spent")
+              Text(budget.spent, format: .currency(code: Locale.currencyCode))
+              Spacer()
           }
           HStack {
             Spacer()
             Text("Remaining")
-            Text(remaining, format: .currency(code: Locale.currentcyCode))
-              .foregroundStyle(remaining < 0 ? .red: .green)
+            Text(budget.remaining, format: .currency(code: Locale.currencyCode))
+              .foregroundStyle(budget.remaining < 0 ? .red: .green)
             Spacer()
           }
         }
