@@ -111,8 +111,7 @@ struct FilterScreen: View {
       print(error.localizedDescription)
     }
   }
-
-   // TODO: - performSort
+  // TODO: - performSort
   private func performSort() {
     guard let sortOption = selectedSortOption else { return}
     let request = Expense.fetchRequest()
