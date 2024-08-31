@@ -12,6 +12,7 @@ struct AddBudgetScreen: View {
   @State private var title:String = ""
   @State private var limit:Double?
   @State private var errorMessage: String = ""
+  @Environment(\.dismiss) private var dismiss
 
   private var isFormValid: Bool {
       !title.isEmptyOrWhitespace && limit != nil && Double(limit!) > 0
@@ -26,6 +27,7 @@ struct AddBudgetScreen: View {
     do {
       try context.save()
       errorMessage = ""
+      dismiss()
     } catch {
       errorMessage = "Unable to save budget."
     }

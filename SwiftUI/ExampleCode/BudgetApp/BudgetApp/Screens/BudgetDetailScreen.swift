@@ -12,17 +12,20 @@ struct BudgetDetailScreen: View {
   @State private var title:String = ""
   @State private var amount:Double?
   @State private var selectedTags:Set<Tag> = []
+  @State private var quantity:Int?
+  @State private var expenseToEdit:Expense?
   @Environment(\.managedObjectContext) private var context
   @FetchRequest(sortDescriptors: []) private var expenses: FetchedResults<Expense>
 
   private var isFormValid: Bool {
-    !title.isEmptyOrWhitespace && amount != nil && Double(amount!) > 0 && !selectedTags.isEmpty
+    !title.isEmptyOrWhitespace && amount != nil && Double(amount!) > 0 && !selectedTags.isEmpty && quantity != nil && Int(quantity!) > 0
   }
 
   private func addExpense() {
     let expense = Expense(context:context)
     expense.title = title
     expense.amount = amount ?? 0.0
+    expense.quantity = Int16(quantity ?? 0)
     expense.dateCreated = Date()
     expense.tags = NSSet(array: Array(selectedTags))
     budget.addToExpenses(expense)
@@ -30,8 +33,10 @@ struct BudgetDetailScreen: View {
       try context.save()
       title = ""
       amount = nil
+      quantity = nil
       selectedTags = []
     } catch {
+      context.rollback()
       print(error)
     }
   }
@@ -69,6 +74,7 @@ struct BudgetDetailScreen: View {
         TextField("title", text: $title)
         TextField("Amount", value: $amount, format: .number)
           .keyboardType(.numberPad)
+        TextField("Quantity", value: $quantity, format: .number)
         TagView(selectedTags: $selectedTags)
         Button {
           addExpense()
@@ -99,12 +105,20 @@ struct BudgetDetailScreen: View {
         ForEach(expenses) {
           expense in
           ExpenseCellView(expense: expense)
+            .onLongPressGesture {
+              expenseToEdit = expense
+            }
         }
         .onDelete(perform: { indexSet in
           deleteExpense(indexSet)
         })
       }
     }.navigationTitle(budget.title ?? "")
+      .sheet(item: $expenseToEdit) { expenseToEdit in
+        NavigationStack {
+          EditExenseScreen(expense: expenseToEdit)
+        }
+      }
   }
 }
 
