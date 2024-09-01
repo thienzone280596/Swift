@@ -6,6 +6,22 @@
 //
 
 import SwiftUI
+import CoreData
+
+struct EditExpenseConfig:Identifiable {
+  let id = UUID()
+  let expenses: Expense
+  let childContext:NSManagedObjectContext
+
+  init?(expenseObjectID: NSManagedObjectID, context: NSManagedObjectContext) {
+    self.childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    self.childContext.parent = context
+    guard let existingExpense = self.childContext.object(with: expenseObjectID) as? Expense else {
+      return nil
+    }
+    self.expenses = existingExpense
+  }
+}
 
 struct BudgetDetailScreen: View {
   let budget:Budget
@@ -14,6 +30,7 @@ struct BudgetDetailScreen: View {
   @State private var selectedTags:Set<Tag> = []
   @State private var quantity:Int?
   @State private var expenseToEdit:Expense?
+  @State private var editExpenseConfig:EditExpenseConfig?
   @Environment(\.managedObjectContext) private var context
   @FetchRequest(sortDescriptors: []) private var expenses: FetchedResults<Expense>
 
@@ -106,7 +123,9 @@ struct BudgetDetailScreen: View {
           expense in
           ExpenseCellView(expense: expense)
             .onLongPressGesture {
-              expenseToEdit = expense
+              //expenseToEdit = expense
+              editExpenseConfig = EditExpenseConfig(expenseObjectID: expense.objectID, context: context)
+
             }
         }
         .onDelete(perform: { indexSet in
@@ -114,9 +133,18 @@ struct BudgetDetailScreen: View {
         })
       }
     }.navigationTitle(budget.title ?? "")
-      .sheet(item: $expenseToEdit) { expenseToEdit in
+      .sheet(item: $editExpenseConfig) { editExpenseConfig in
         NavigationStack {
-          EditExenseScreen(expense: expenseToEdit)
+          EditExenseScreen(expense: editExpenseConfig.expenses) {
+            do {
+              try context.save()
+              self.editExpenseConfig = nil
+            } catch {
+              print(error)
+            }
+
+          }
+            .environment(\.managedObjectContext, editExpenseConfig.childContext)
         }
       }
   }

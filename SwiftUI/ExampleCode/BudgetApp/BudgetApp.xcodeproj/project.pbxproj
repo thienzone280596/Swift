@@ -34,6 +34,7 @@
 		6E2A28F22C806DF700571D27 /* MappingModel-V1-to-V2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-V1-to-V2.xcmappingmodel"; sourceTree = "<group>"; };
 		6E2A28F52C807CF700571D27 /* MigrationPolicy_v1_to_V2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationPolicy_v1_to_V2.swift; sourceTree = "<group>"; };
 		6E2A28F72C817CC400571D27 /* EditExenseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExenseScreen.swift; sourceTree = "<group>"; };
+		6E2A28F92C836DD300571D27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6E376A472C7644590039AFBA /* BudgetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E376A4A2C7644590039AFBA /* BudgetAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetAppApp.swift; sourceTree = "<group>"; };
 		6E376A4E2C76445A0039AFBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +93,7 @@
 		6E376A492C7644590039AFBA /* BudgetApp */ = {
 			isa = PBXGroup;
 			children = (
+				6E2A28F92C836DD300571D27 /* Info.plist */,
 				6E2A28F42C8075C000571D27 /* Migration Policies */,
 				6E376A762C7CCBB60039AFBA /* Seeders */,
 				6E376A6F2C7BB1250039AFBA /* Views */,
@@ -382,12 +384,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BudgetApp/Preview Content\"";
 				DEVELOPMENT_TEAM = UPWZYM9BJD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BudgetApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -400,6 +404,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thientran.BudgetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -411,12 +416,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BudgetApp/Preview Content\"";
 				DEVELOPMENT_TEAM = UPWZYM9BJD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BudgetApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -429,6 +436,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thientran.BudgetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

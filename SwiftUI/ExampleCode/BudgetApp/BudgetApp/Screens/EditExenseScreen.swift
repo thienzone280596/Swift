@@ -11,6 +11,7 @@ struct EditExenseScreen: View {
 
   @ObservedObject var expense:Expense
  @Environment(\.managedObjectContext) private var context
+  let onUpdate: () -> Void
 //  @State private var title:String = ""
 //  @State private var amount:Double?
 //  @State private var expenseSelectedTags:Set<Tag> = []
@@ -26,7 +27,8 @@ struct EditExenseScreen: View {
 
     do {
       try context.save()
-      dismiss()
+//      dismiss()
+      onUpdate()
     } catch {
       print(error)
     }
@@ -69,7 +71,7 @@ struct EditExenseContainerView: View {
   @FetchRequest(sortDescriptors: []) private var expenses:FetchedResults<Expense>
   var body: some View {
     NavigationStack {
-      EditExenseScreen(expense: expenses[0])
+      EditExenseScreen(expense: expenses[0], onUpdate: {})
 
     }
   }
