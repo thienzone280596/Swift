@@ -20,7 +20,13 @@ class Movie {
 
   @Relationship(deleteRule:.nullify, inverse: \Actor.movies)
   var actors: [Actor] = []
+  @Transient var reviewCount:Int {
+    reviews.count
+  }
 
+  @Transient var actorCount:Int {
+    actors.count
+  }
 
   init(title: String, year: Int) {
     self.title = title

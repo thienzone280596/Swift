@@ -21,13 +21,15 @@ enum Sheets:Identifiable {
 struct MovieListScreen: View {
     //truy van
   @Environment(\.modelContext) private var context
+  @Environment(\.dismiss) private var dismiss
   @Query(filter: #Predicate<Movie> { $0.title.contains("Batman") } ) private var movies: [Movie]
   @Query(sort: \Actor.name, order: .forward) private var actors:[Actor]
 
-  @State private var isAddMoviePresented:Bool = false
-  @State private var isActorPresented:Bool = false
+//  @State private var isAddMoviePresented:Bool = false
+//  @State private var isActorPresented:Bool = false
   @State private var actorName:String = ""
   @State private var activeSheet:Sheets?
+  @State private var filterOption:FilterOption = .none
 
   private var isValidActor: Bool {
     return !actorName.isEmptyOrWhiteSpace
@@ -40,9 +42,15 @@ struct MovieListScreen: View {
 
     var body: some View {
       VStack(alignment:.leading) {
-        Text("Movies")
-          .font(.largeTitle)
-        MovieListView(movies: movies)
+        HStack {
+          Text("Movies")
+            .font(.largeTitle)
+          Spacer()
+          Button("Filter") {
+            activeSheet = .showFilter
+          }
+        }
+        MovieListView(filterOption: filterOption)
 
         Text("Actor")
           .font(.largeTitle)
@@ -80,13 +88,14 @@ struct MovieListScreen: View {
             .presentationDetents([.fraction(0.25)])
             .padding()
           Button("Save") {
-            isActorPresented = false
-
+            //isActorPresented = false
             saveActor()
+              self.activeSheet = nil
           }.disabled(!isValidActor)
         case .showFilter:
-          Text("Show Filter screen")
-
+          NavigationStack {
+            FilterSelectionScreen(filterOption: $filterOption)
+          }
         }
       })
 

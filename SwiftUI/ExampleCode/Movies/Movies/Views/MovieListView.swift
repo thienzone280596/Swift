@@ -9,8 +9,21 @@ import SwiftUI
 import SwiftData
 
 struct MovieListView: View {
+  let filterOption:FilterOption
+  @Query private var movies:[Movie]
 
-    let movies: [Movie]
+  init(filterOption: FilterOption = .none) {
+    self.filterOption = filterOption
+    switch self.filterOption {
+    case .title(let movieTitle):
+      _movies = Query(filter: #Predicate{ $0.title.contains(movieTitle)})
+    case .none:
+      _movies = Query()
+    case .reviewsCount(let numberOfReview):
+      _movies = Query(filter: #Predicate{$0.reviews.count > numberOfReview})
+    }
+  }
+//    let movies: [Movie]
     @Environment(\.modelContext) private var context
 
     private func deleteMovie(indexSet: IndexSet) {
@@ -31,8 +44,14 @@ struct MovieListView: View {
         List {
             ForEach(movies) { movie in
                 NavigationLink(value: movie) {
-                    HStack {
+                    HStack(alignment: .firstTextBaseline) {
+                      VStack(alignment:.leading) {
                         Text(movie.title)
+                        Text("Number Of review \(movie.reviewCount)")
+                          .font(.caption)
+                        Text("Number Of Actor \(movie.actorCount)")
+                          .font(.caption)
+                      }
                         Spacer()
                         Text(movie.year.description)
                     }
@@ -45,6 +64,6 @@ struct MovieListView: View {
 }
 
 #Preview {
-    MovieListView(movies: [])
+  MovieListView(filterOption: .none)
         .modelContainer(for: [Movie.self])
 }
