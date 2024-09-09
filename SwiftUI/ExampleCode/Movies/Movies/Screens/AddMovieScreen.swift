@@ -14,6 +14,7 @@ struct AddMovieScreen: View {
 
   @State private var title:String = ""
   @State private var year:Int?
+  @State private var genre:Genre = .action
   @State private var selectActors:Set<Actor> = []
 
   private var isFormValid:Bool {
@@ -22,13 +23,12 @@ struct AddMovieScreen: View {
 
   private func saveMovie() {
     guard let year = year else { return }
-    let movie = Movie(name: title, year: year)
+    let movie = Movie(title: title, year: year, genre: genre)
     movie.actors = Array(selectActors)
 
     selectActors.forEach { actor in
       actor.movies.append(movie)
       context.insert(actor)
-
     }
     context.insert(movie)
     do {
@@ -39,13 +39,17 @@ struct AddMovieScreen: View {
     } catch {
       print(error)
     }
-
-
   }
 
   var body: some View {
      // TODO: - form
     Form {
+      Picker("Select Genre", selection: $genre) {
+        ForEach(Genre.allCases) { genre in
+          Text(genre.title).tag(genre)
+        }
+      }
+      .pickerStyle(.segmented)
       TextField("Title", text: $title)
       TextField("Year", value: $year, format: .number)
       Section("Select Actor") {

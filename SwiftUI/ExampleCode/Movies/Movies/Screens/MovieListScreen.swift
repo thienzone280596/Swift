@@ -22,7 +22,7 @@ struct MovieListScreen: View {
     //truy van
   @Environment(\.modelContext) private var context
   @Environment(\.dismiss) private var dismiss
-  @Query(sort: \Movie.name, order: .forward) private var movies: [Movie]
+  @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
   @Query(sort: \Actor.name, order: .forward) private var actors:[Actor]
 
 //  @State private var isAddMoviePresented:Bool = false
@@ -38,6 +38,7 @@ struct MovieListScreen: View {
   private func saveActor() {
     let actor = Actor(name: actorName)
     context.insert(actor)
+    actorName = ""
   }
 
     var body: some View {
@@ -123,6 +124,6 @@ struct MovieListScreen: View {
 #Preview {
   NavigationStack {
     MovieListScreen()
-      .modelContainer(for: [Movie.self, Review.self, Actor.self])
+      .modelContainer(for: [Movie.self, Review.self, Actor.self], inMemory: true)
   }
 }
