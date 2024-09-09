@@ -5,6 +5,7 @@
 //  Created by ThienTran on 5/9/24.
 //
 
+
 import SwiftUI
 import SwiftData
 
@@ -29,6 +30,7 @@ struct MovieSelectionView: View {
         }
     }
 }
+
 
 //#Preview {
 //    MovieSelectionView()

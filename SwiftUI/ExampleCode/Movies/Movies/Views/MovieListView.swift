@@ -9,21 +9,27 @@ import SwiftUI
 import SwiftData
 
 struct MovieListView: View {
-  let filterOption:FilterOption
-  @Query private var movies:[Movie]
 
-  init(filterOption: FilterOption = .none) {
-    self.filterOption = filterOption
-    switch self.filterOption {
-    case .title(let movieTitle):
-      _movies = Query(filter: #Predicate{ $0.title.contains(movieTitle)})
-    case .none:
-      _movies = Query()
-    case .reviewsCount(let numberOfReview):
-      _movies = Query(filter: #Predicate{$0.reviews.count > numberOfReview})
+    @Query private var movies: [Movie] = []
+    let filterOption: FilterOption
+
+    init(filterOption: FilterOption = .none) {
+        self.filterOption = filterOption
+
+        switch self.filterOption {
+            case .title(let movieTitle):
+                _movies = Query(filter: #Predicate { $0.title.contains(movieTitle) })
+            case .reviewsCount(let numberOfReviews):
+                _movies = Query(filter: #Predicate { $0.reviews.count >= numberOfReviews })
+//            case .actorsCount(let numberOfActors):
+//                _movies = Query(filter: #Predicate { $0.actors.count >= numberOfActors })
+            case .genre(let genre):
+          _movies = Query(filter: #Predicate { $0.genreId == genre.id })
+            case .none:
+                _movies = Query()
+        }
     }
-  }
-//    let movies: [Movie]
+
     @Environment(\.modelContext) private var context
 
     private func deleteMovie(indexSet: IndexSet) {
@@ -40,35 +46,33 @@ struct MovieListView: View {
 
     }
 
-  var body: some View {
-      List {
-          ForEach(movies) { movie in
-              NavigationLink(value: movie) {
+    var body: some View {
+        List {
+            ForEach(movies) { movie in
+                NavigationLink(value: movie) {
 
-                  HStack(alignment: .firstTextBaseline) {
-                      VStack(alignment: .leading) {
-                          Text(movie.title)
-                        Text(movie.genre.title)
-                          .font(.caption)
-                          Text("Number of reviews: \(movie.reviewsCount)")
-                              .font(.caption)
-                          Text("Number of actors: \(movie.actorsCount)")
-                              .font(.caption)
+                    HStack(alignment: .firstTextBaseline) {
+                        VStack(alignment: .leading) {
+                            Text(movie.title)
+                            Text(movie.genre.title)
+                            Text("Number of reviews: \(movie.reviewsCount)")
+                                .font(.caption)
+                            Text("Number of actors: \(movie.actorsCount)")
+                                .font(.caption)
+                        }
+                        Spacer()
+                        Text(movie.year.description)
+                    }
 
-                      }
-                      Spacer()
-                      Text(movie.year.description)
-                  }
-
-              }
-          }.onDelete(perform: deleteMovie)
-      }.navigationDestination(for: Movie.self) { movie in
-          MovieDetailScreen(movie: movie)
-      }
-  }
+                }
+            }.onDelete(perform: deleteMovie)
+        }.navigationDestination(for: Movie.self) { movie in
+            MovieDetailScreen(movie: movie)
+        }
+    }
 }
 
 #Preview {
-  MovieListView(filterOption: .none)
+    MovieListView(filterOption: .none)
         .modelContainer(for: [Movie.self])
 }

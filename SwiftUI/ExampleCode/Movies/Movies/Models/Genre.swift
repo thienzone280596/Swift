@@ -9,7 +9,7 @@ import Foundation
 
 
 enum Genre:Int, Codable, CaseIterable, Identifiable {
-  case action
+  case action = 1
   case horror
   case kids
   case fiction
