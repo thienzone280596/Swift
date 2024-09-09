@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct ActorDetailScreen: View {
-  let actor:Actor
-  @Environment(\.modelContext) private var context
-  @State private var selectedMovie:Set<Movie> = []
+
+    @Environment(\.modelContext) private var context
+
+    let actor: Actor
+    @State private var selectedMovies: Set<Movie> = []
 
     var body: some View {
-      VStack {
-        MovieSelectionView(selectedMovie: $selectedMovie)
-          .onAppear{
-            selectedMovie = Set(actor.movies)
-          }
-      }
-      .onChange(of: selectedMovie, {
-        actor.movies = Array(selectedMovie)
-        context.insert(actor)
-      })
-      .navigationTitle(actor.name)
-
-
+        VStack {
+            MovieSelectionView(selectedMovies: $selectedMovies)
+                .onAppear {
+                    selectedMovies = Set(actor.movies)
+                }
+        }
+        .onChange(of: selectedMovies, {
+            actor.movies = Array(selectedMovies)
+            context.insert(actor)
+        })
+        .navigationTitle(actor.name)
     }
 }
 

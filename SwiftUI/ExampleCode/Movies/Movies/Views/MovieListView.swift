@@ -16,7 +16,7 @@ struct MovieListView: View {
     self.filterOption = filterOption
     switch self.filterOption {
     case .title(let movieTitle):
-      _movies = Query(filter: #Predicate{ $0.title.contains(movieTitle)})
+      _movies = Query(filter: #Predicate{ $0.name.contains(movieTitle)})
     case .none:
       _movies = Query()
     case .reviewsCount(let numberOfReview):
@@ -47,7 +47,7 @@ struct MovieListView: View {
 
                   HStack(alignment: .firstTextBaseline) {
                       VStack(alignment: .leading) {
-                          Text(movie.title)
+                          Text(movie.name)
                           Text("Number of reviews: \(movie.reviewsCount)")
                               .font(.caption)
                           Text("Number of actors: \(movie.actorsCount)")

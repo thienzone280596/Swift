@@ -22,7 +22,7 @@ struct MovieListScreen: View {
     //truy van
   @Environment(\.modelContext) private var context
   @Environment(\.dismiss) private var dismiss
-  @Query(filter: #Predicate<Movie> { $0.title.contains("Batman") } ) private var movies: [Movie]
+  @Query(sort: \Movie.name, order: .forward) private var movies: [Movie]
   @Query(sort: \Actor.name, order: .forward) private var actors:[Actor]
 
 //  @State private var isAddMoviePresented:Bool = false
