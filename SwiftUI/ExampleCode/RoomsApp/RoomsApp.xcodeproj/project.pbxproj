@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E1D25752C8F435500A0EB5D /* UIColorValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D25742C8F435500A0EB5D /* UIColorValueTransformer.swift */; };
 		8D527C2B2ABA0F9B004CC395 /* RoomsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D527C2A2ABA0F9B004CC395 /* RoomsAppApp.swift */; };
 		8D527C2D2ABA0F9B004CC395 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D527C2C2ABA0F9B004CC395 /* ContentView.swift */; };
 		8D527C2F2ABA0F9C004CC395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D527C2E2ABA0F9C004CC395 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E1D25742C8F435500A0EB5D /* UIColorValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorValueTransformer.swift; sourceTree = "<group>"; };
 		8D527C272ABA0F9B004CC395 /* RoomsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D527C2A2ABA0F9B004CC395 /* RoomsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsAppApp.swift; sourceTree = "<group>"; };
 		8D527C2C2ABA0F9B004CC395 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,6 +36,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E1D25732C8F432B00A0EB5D /* Value Transformer */ = {
+			isa = PBXGroup;
+			children = (
+				6E1D25742C8F435500A0EB5D /* UIColorValueTransformer.swift */,
+			);
+			path = "Value Transformer";
+			sourceTree = "<group>";
+		};
 		8D527C1E2ABA0F9B004CC395 = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +63,7 @@
 		8D527C292ABA0F9B004CC395 /* RoomsApp */ = {
 			isa = PBXGroup;
 			children = (
+				6E1D25732C8F432B00A0EB5D /* Value Transformer */,
 				8D527C392ABA165C004CC395 /* Models */,
 				8D527C2A2ABA0F9B004CC395 /* RoomsAppApp.swift */,
 				8D527C2C2ABA0F9B004CC395 /* ContentView.swift */,
@@ -149,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D527C2D2ABA0F9B004CC395 /* ContentView.swift in Sources */,
+				6E1D25752C8F435500A0EB5D /* UIColorValueTransformer.swift in Sources */,
 				8D527C2B2ABA0F9B004CC395 /* RoomsAppApp.swift in Sources */,
 				8D527C3B2ABA1669004CC395 /* Room.swift in Sources */,
 			);
