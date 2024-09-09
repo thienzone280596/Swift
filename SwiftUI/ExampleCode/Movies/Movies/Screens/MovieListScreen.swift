@@ -18,18 +18,26 @@ enum Sheets:Identifiable {
   }
 }
 
+struct FilterSelectionConfig {
+    var movieTitle: String = ""
+    var numberOfReviews: Int?
+    var numberOfActors: Int?
+    var genre: Genre = .action
+    var filter: FilterOption = .none
+}
+
 struct MovieListScreen: View {
     //truy van
   @Environment(\.modelContext) private var context
   @Environment(\.dismiss) private var dismiss
   @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
   @Query(sort: \Actor.name, order: .forward) private var actors:[Actor]
-
+  @State var filterSelectionConfig = FilterSelectionConfig()
 //  @State private var isAddMoviePresented:Bool = false
 //  @State private var isActorPresented:Bool = false
-  @State private var actorName:String = ""
-  @State private var activeSheet:Sheets?
-  @State private var filterOption:FilterOption = .none
+ @State private var actorName:String = ""
+ @State private var activeSheet:Sheets?
+//  @State private var filterOption:FilterOption = .none
 
   private var isValidActor: Bool {
     return !actorName.isEmptyOrWhiteSpace
@@ -51,7 +59,7 @@ struct MovieListScreen: View {
             activeSheet = .showFilter
           }
         }
-        MovieListView(filterOption: filterOption)
+        MovieListView(filterOption: filterSelectionConfig.filter)
 
         Text("Actor")
           .font(.largeTitle)
@@ -95,7 +103,7 @@ struct MovieListScreen: View {
           }.disabled(!isValidActor)
         case .showFilter:
           NavigationStack {
-            FilterSelectionScreen(filterOption: $filterOption)
+            FilterSelectionScreen(filterSelectionConfig: $filterSelectionConfig)
           }
         }
       })
