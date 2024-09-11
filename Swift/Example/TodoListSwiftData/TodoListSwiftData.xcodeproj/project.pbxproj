@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E1D25A02C90C18600A0EB5D /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D259F2C90C18600A0EB5D /* TodoItem.swift */; };
 		8D4406BA2A4C87AE008350C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4406B92A4C87AE008350C7 /* AppDelegate.swift */; };
 		8D4406BC2A4C87AE008350C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4406BB2A4C87AE008350C7 /* SceneDelegate.swift */; };
 		8D4406BE2A4C87AE008350C7 /* TodoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4406BD2A4C87AE008350C7 /* TodoListTableViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E1D259F2C90C18600A0EB5D /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		8D4406B62A4C87AE008350C7 /* TodoListSwiftData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListSwiftData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4406B92A4C87AE008350C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D4406BB2A4C87AE008350C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E1D259E2C90C17900A0EB5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6E1D259F2C90C18600A0EB5D /* TodoItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8D4406AD2A4C87AE008350C7 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +68,7 @@
 		8D4406B82A4C87AE008350C7 /* TodoListSwiftData */ = {
 			isa = PBXGroup;
 			children = (
+				6E1D259E2C90C17900A0EB5D /* Models */,
 				8D4406B92A4C87AE008350C7 /* AppDelegate.swift */,
 				8D4406BB2A4C87AE008350C7 /* SceneDelegate.swift */,
 				8D4406BD2A4C87AE008350C7 /* TodoListTableViewController.swift */,
@@ -141,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1D25A02C90C18600A0EB5D /* TodoItem.swift in Sources */,
 				8D4406BE2A4C87AE008350C7 /* TodoListTableViewController.swift in Sources */,
 				8D4406BA2A4C87AE008350C7 /* AppDelegate.swift in Sources */,
 				8D4406D12A4C8E08008350C7 /* AddTodoItemController.swift in Sources */,

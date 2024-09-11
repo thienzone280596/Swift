@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 import SwiftData
 
+protocol AddTodoItemControllerDelegate {
+  func addTodoIttemControllerDidSave(controller:UIViewController, todoItem:TodoItem)
+}
+
 class AddTodoItemController: UIViewController {
     
     lazy var titleTextField: UITextField = {
@@ -26,7 +30,9 @@ class AddTodoItemController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
+    var delegate:AddTodoItemControllerDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
                
@@ -39,9 +45,12 @@ class AddTodoItemController: UIViewController {
         view.addSubview(stackView)
         
         saveButton.addAction(UIAction(handler: { [weak self] action in
-            
-           
-            
+            //add new item
+          guard let title = self?.titleTextField.text else { return }
+          if let delegate = self?.delegate, let unwrappedSelf = self {
+            delegate.addTodoIttemControllerDidSave(controller: unwrappedSelf, todoItem: TodoItem(title: title))
+          }
+
         }), for: .touchUpInside)
         
         titleTextField.widthAnchor.constraint(equalToConstant: 200).isActive = true
