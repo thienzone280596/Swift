@@ -2,7 +2,7 @@
 //  LocationManager.swift
 //  NearMe
 //
-//  Created by ThienTran on 12/9/24.
+//  Created by Mohammad Azam on 8/13/23.
 //
 
 import Foundation
@@ -16,7 +16,7 @@ enum LocationError: LocalizedError {
     case accessDenied
     case network
     case operationFailed
-
+    
     var errorDescription: String? {
         switch self {
             case .authorizationDenied:
@@ -37,13 +37,13 @@ enum LocationError: LocalizedError {
 
 @Observable
 class LocationManager: NSObject, CLLocationManagerDelegate {
-
+    
     let manager = CLLocationManager()
     static let shared = LocationManager()
     var error: LocationError? = nil
-
+    
     var region: MKCoordinateRegion = MKCoordinateRegion()
-
+    
     private override init() {
         super.init()
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -52,14 +52,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 }
 
 extension LocationManager {
-
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locations.last.map {
             region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude),
                                                     span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
         }
     }
-
+    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
             case .notDetermined:
@@ -74,9 +74,9 @@ extension LocationManager {
                 break
         }
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-
+        
         if let clError = error as? CLError {
             switch clError.code {
                 case .locationUnknown:
@@ -89,6 +89,7 @@ extension LocationManager {
                     self.error = .operationFailed
             }
         }
-
+        
     }
+    
 }
