@@ -10,7 +10,7 @@ import MapKit
 
 struct ContentView: View {
     
-    @State private var query: String = ""
+    @State private var query: String = "Coffee"
     @State private var selectedDetent: PresentationDetent = .fraction(0.15)
     @State private var locationManager = LocationManager.shared
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
@@ -53,7 +53,9 @@ struct ContentView: View {
                         .onSubmit {
                             isSearching = true
                         }
-                    
+                  List(mapItems, id: \.self) { mapItem in
+                   PlaceView(mapItem: mapItem)
+                  }
                     Spacer()
                 }
                 .presentationDetents([.fraction(0.15), .medium, .large], selection: $selectedDetent)
