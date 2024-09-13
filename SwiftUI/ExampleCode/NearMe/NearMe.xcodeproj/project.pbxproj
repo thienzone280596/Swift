@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E1D25E62C9339FC00A0EB5D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D25E52C9339FC00A0EB5D /* LocationManager.swift */; };
 		8D4B557E2A894A4400781C2D /* NearMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B557D2A894A4400781C2D /* NearMeApp.swift */; };
 		8D4B55802A894A4400781C2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B557F2A894A4400781C2D /* ContentView.swift */; };
 		8D4B55822A894A4700781C2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D4B55812A894A4700781C2D /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E1D25E52C9339FC00A0EB5D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = ../../../LocationManager.swift; sourceTree = "<group>"; };
 		8D4B557A2A894A4400781C2D /* NearMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4B557D2A894A4400781C2D /* NearMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeApp.swift; sourceTree = "<group>"; };
 		8D4B557F2A894A4400781C2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +34,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E1D25E42C9339ED00A0EB5D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6E1D25E52C9339FC00A0EB5D /* LocationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		8D4B55712A894A4400781C2D = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +61,7 @@
 		8D4B557C2A894A4400781C2D /* NearMe */ = {
 			isa = PBXGroup;
 			children = (
+				6E1D25E42C9339ED00A0EB5D /* Manager */,
 				8D4B557D2A894A4400781C2D /* NearMeApp.swift */,
 				8D4B557F2A894A4400781C2D /* ContentView.swift */,
 				8D4B55812A894A4700781C2D /* Assets.xcassets */,
@@ -139,6 +150,7 @@
 			files = (
 				8D4B55802A894A4400781C2D /* ContentView.swift in Sources */,
 				8D4B557E2A894A4400781C2D /* NearMeApp.swift in Sources */,
+				6E1D25E62C9339FC00A0EB5D /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
