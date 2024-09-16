@@ -8,13 +8,15 @@
 import Foundation
 
 
-struct RestroomClient {
+struct RestroomClient:HTTPClient {
+
+
   private enum RestroomClientError:Error {
     case invalidResponse
     case networkError(Error)
   }
 
-  func fetchRestroom(url:URL) async throws -> [RestRoom] {
+  func fetchRestrooms(url:URL) async throws -> [Restroom] {
     let (data, response) = try await URLSession.shared.data(from: url)
     guard let httpResponse = response as? HTTPURLResponse,
           httpResponse.statusCode == 200 else {
@@ -22,7 +24,7 @@ struct RestroomClient {
     }
 
     do {
-      return try JSONDecoder().decode([RestRoom].self, from: data)
+      return try JSONDecoder().decode([Restroom].self, from: data)
     } catch {
       throw RestroomClientError.networkError(error)
     }
