@@ -9,7 +9,9 @@ import SwiftUI
 import MapKit
 
 struct PlaceListView: View {
-    let mapItems:[MKMapItem]
+  let mapItems:[MKMapItem]
+  @Binding var selectedMapItem:MKMapItem?
+
   private var sortItems:[MKMapItem]  {
     guard let userLocation = LocationManager.shared.manager.location else {
       return mapItems
@@ -26,7 +28,7 @@ struct PlaceListView: View {
   }
     var body: some View {
       VStack {
-        List(sortItems, id: \.self) { mapItem in
+        List(sortItems, id: \.self, selection: $selectedMapItem) { mapItem in
          PlaceView(mapItem: mapItem)
         }
       }
@@ -34,5 +36,9 @@ struct PlaceListView: View {
 }
 
 #Preview {
-  PlaceListView(mapItems: [PreviewData.apple])
+  let apple =
+  Binding<MKMapItem?>(
+    get: {PreviewData.apple},
+    set: {_ in})
+ return PlaceListView(mapItems: [PreviewData.apple], selectedMapItem: apple)
 }

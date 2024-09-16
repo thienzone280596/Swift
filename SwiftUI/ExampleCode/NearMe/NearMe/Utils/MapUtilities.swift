@@ -8,6 +8,25 @@
 import Foundation
 import MapKit
 
+func makeCall(phone:String) {
+  if let url = URL(string: "tel://\(phone)") {
+    if UIApplication.shared.canOpenURL(url) {
+      UIApplication.shared.open(url)
+    } else {
+      print("Device can't make phone calls")
+    }
+  }
+}
+
+func caculateDirections(from:MKMapItem, to:MKMapItem) async -> MKRoute? {
+  let directionsRequest = MKDirections.Request()
+  directionsRequest.transportType = .automobile
+  directionsRequest.source = from
+  directionsRequest.destination = to
+  let directions = MKDirections(request: directionsRequest)
+  let response = try? await directions.calculate()
+  return response?.routes.first
+}
 
 func caculateDistance(from: CLLocation, to: CLLocation) -> Measurement<UnitLength> {
   let distanceInMeters = from.distance(from: to)
