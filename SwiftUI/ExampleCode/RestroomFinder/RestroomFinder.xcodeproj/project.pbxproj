@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E1D26002C98075500A0EB5D /* RestRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D25FF2C98075500A0EB5D /* RestRoom.swift */; };
 		8DC979F62A98DCA500E08C44 /* RestroomFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC979F52A98DCA500E08C44 /* RestroomFinderApp.swift */; };
 		8DC979F82A98DCA500E08C44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC979F72A98DCA500E08C44 /* ContentView.swift */; };
 		8DC979FA2A98DCA700E08C44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DC979F92A98DCA700E08C44 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E1D25FF2C98075500A0EB5D /* RestRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestRoom.swift; sourceTree = "<group>"; };
 		8DC979F22A98DCA500E08C44 /* RestroomFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestroomFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC979F52A98DCA500E08C44 /* RestroomFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestroomFinderApp.swift; sourceTree = "<group>"; };
 		8DC979F72A98DCA500E08C44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E1D25FE2C98073900A0EB5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6E1D25FF2C98075500A0EB5D /* RestRoom.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8DC979E92A98DCA500E08C44 = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +67,7 @@
 		8DC979F42A98DCA500E08C44 /* RestroomFinder */ = {
 			isa = PBXGroup;
 			children = (
+				6E1D25FE2C98073900A0EB5D /* Models */,
 				8DC97A0F2A98DD4F00E08C44 /* Views */,
 				8DC97A092A98DD1100E08C44 /* Managers */,
 				8DC97A042A98DCD900E08C44 /* Extensions */,
@@ -170,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1D26002C98075500A0EB5D /* RestRoom.swift in Sources */,
 				8DC97A112A98DD6700E08C44 /* ActionButtons.swift in Sources */,
 				8DC979F82A98DCA500E08C44 /* ContentView.swift in Sources */,
 				8DC97A0B2A98DD2400E08C44 /* LocationManager.swift in Sources */,
