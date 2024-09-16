@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct RestRoom:Decodable {
+struct RestRoom:Decodable, Identifiable {
   let id: Int
   let name: String
   let street:String

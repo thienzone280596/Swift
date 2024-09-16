@@ -1,0 +1,31 @@
+//
+//  RestroomClient.swift
+//  RestroomFinder
+//
+//  Created by ThienTran on 16/9/24.
+//
+
+import Foundation
+
+
+struct RestroomClient {
+  private enum RestroomClientError:Error {
+    case invalidResponse
+    case networkError(Error)
+  }
+
+  func fetchRestroom(url:URL) async throws -> [RestRoom] {
+    let (data, response) = try await URLSession.shared.data(from: url)
+    guard let httpResponse = response as? HTTPURLResponse,
+          httpResponse.statusCode == 200 else {
+      throw RestroomClientError.invalidResponse
+    }
+
+    do {
+      return try JSONDecoder().decode([RestRoom].self, from: data)
+    } catch {
+      throw RestroomClientError.networkError(error)
+    }
+   
+  }
+}
