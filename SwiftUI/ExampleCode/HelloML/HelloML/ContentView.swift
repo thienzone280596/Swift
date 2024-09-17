@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import CoreML
 
 struct ContentView: View {
   let images = ["1", "2", "3", "4"]
+
+  let model = try! MobileNetV2(configuration: MLModelConfiguration())
+
   @State private var currentIndex:Int = 0
     var body: some View {
         VStack {
@@ -34,6 +38,17 @@ struct ContentView: View {
             .disabled(currentIndex == images.count - 1)
           }
           Button {
+            guard let uiImage = UIImage(named:images[currentIndex]) else {return}
+            //resize image
+            let resizeImage = uiImage.resize(to: CGSize(width: 224, height: 224))
+            guard let buffer = resizeImage?.toCVPixelBuffer() else {return}
+            do {
+              let prediction = try model.prediction(image: buffer)
+              print(prediction.classLabel)
+            } catch {
+              print(error.localizedDescription)
+            }
+
 
           } label: {
             Text("Predict")
