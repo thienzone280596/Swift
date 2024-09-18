@@ -29,8 +29,9 @@ struct ContentView: View {
     let model = try! CatsVsDogsImageClassifier(configuration: MLModelConfiguration())
     @State private var probs: [String: Double] = [: ]
     @State private var selectedPhotoItem: PhotosPickerItem? = nil
-    @State private var uiImage: UIImage = UIImage(named: "cat_113")!
-    
+    @State private var uiImage: UIImage? = UIImage(named: "cat_113")
+  @State private var isCameraSelected:Bool = false
+
     var sortedProbs: [Dictionary<String, Double>.Element] {
         
         let probsArray = Array(probs)
@@ -42,11 +43,14 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            
+          if let uiImage = uiImage {
             Image(uiImage: uiImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300, height: 300)
+          }
+
+
             HStack {
                 
                 PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
@@ -54,7 +58,7 @@ struct ContentView: View {
                 }
                 
                 Button("Camera") {
-                    
+                    isCameraSelected = true
                 }.buttonStyle(.bordered)
                     
             }
@@ -62,12 +66,13 @@ struct ContentView: View {
             
             Button("Predict") {
                 
-                let resizedImage = uiImage.resizeTo(to: CGSize(width: 299, height: 299)) 
-                guard let buffer = resizedImage.toCVPixelBuffer() else { return }
+              let resizedImage = uiImage?.resizeTo(to: CGSize(width: 299, height: 299)) 
+              guard let buffer = resizedImage?.toCVPixelBuffer() else { return }
                 
                 do {
                     let result = try model.prediction(image: buffer)
                     probs = result.classLabelProbs
+
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -88,6 +93,9 @@ struct ContentView: View {
                         print(error.localizedDescription)
                 }
             })
+        })
+        .sheet(isPresented: $isCameraSelected, content: {
+          ImagePicker(image: $uiImage, sourceType: .camera)
         })
         .padding()
     }
