@@ -13,6 +13,7 @@
 		6E1D262B2C99CB3000A0EB5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1D262A2C99CB3000A0EB5D /* Preview Assets.xcassets */; };
 		6E1D26322C99CCDE00A0EB5D /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D26312C99CCDE00A0EB5D /* MobileNetV2.mlmodel */; };
 		6E1D26352C99D2B300A0EB5D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D26342C99D2B300A0EB5D /* UIImage+Extensions.swift */; };
+		6E1D26372C9AAD0C00A0EB5D /* NumberFormatter+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D26362C9AAD0C00A0EB5D /* NumberFormatter+Extentions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		6E1D262A2C99CB3000A0EB5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6E1D26312C99CCDE00A0EB5D /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
 		6E1D26342C99D2B300A0EB5D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		6E1D26362C9AAD0C00A0EB5D /* NumberFormatter+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extentions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				6E1D26342C99D2B300A0EB5D /* UIImage+Extensions.swift */,
+				6E1D26362C9AAD0C00A0EB5D /* NumberFormatter+Extentions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1D26372C9AAD0C00A0EB5D /* NumberFormatter+Extentions.swift in Sources */,
 				6E1D26322C99CCDE00A0EB5D /* MobileNetV2.mlmodel in Sources */,
 				6E1D26262C99CB2F00A0EB5D /* ContentView.swift in Sources */,
 				6E1D26242C99CB2F00A0EB5D /* HelloMLApp.swift in Sources */,

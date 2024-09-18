@@ -8,10 +8,32 @@
 import SwiftUI
 import CoreML
 
+
+struct ProbabilitiListView: View {
+  let probs:[Dictionary<String, Double>.Element]
+
+  var body: some View {
+    List(probs, id: \.key) { (key, value) in
+      HStack {
+        Text(key)
+        Spacer()
+        Text(NSNumber(value: value), formatter: NumberFormatter.percentage)
+      }
+    }
+  }
+}
+
 struct ContentView: View {
   let images = ["1", "2", "3", "4"]
 
   let model = try! MobileNetV2(configuration: MLModelConfiguration())
+  @State private var probs: [String:Double] = [:]
+  private var sortedProb:[Dictionary<String, Double>.Element] {
+    let probsArray = Array(probs)
+   return probsArray.sorted{ lhs, rhs in
+      lhs.value > rhs.value
+    }
+  }
 
   @State private var currentIndex:Int = 0
     var body: some View {
@@ -37,6 +59,7 @@ struct ContentView: View {
             .buttonStyle(.bordered)
             .disabled(currentIndex == images.count - 1)
           }
+
           Button {
             guard let uiImage = UIImage(named:images[currentIndex]) else {return}
             //resize image
@@ -44,22 +67,16 @@ struct ContentView: View {
             guard let buffer = resizeImage?.toCVPixelBuffer() else {return}
             do {
               let prediction = try model.prediction(image: buffer)
-              print(prediction.classLabel)
+              print(prediction.classLabelProbs)
+              probs = prediction.classLabelProbs
             } catch {
               print(error.localizedDescription)
             }
-
-
           } label: {
             Text("Predict")
           }
           .buttonStyle(.borderedProminent)
-
-          List(1...10, id: \.self) {
-            index in
-            Text("Prediction \(index)")
-          }
-
+          ProbabilitiListView(probs: Array(sortedProb))
 
         }
         .padding()
