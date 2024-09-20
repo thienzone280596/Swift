@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E1D26572C9C751800A0EB5D /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D26562C9C751800A0EB5D /* YOLOv3Tiny.mlmodel */; };
+		6E1D26592C9D238300A0EB5D /* ObservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D26582C9D238300A0EB5D /* ObservationListView.swift */; };
 		8D03582B2A1D0F6C0023EC50 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03582A2A1D0F6C0023EC50 /* ImagePicker.swift */; };
 		8D03BC002A17BE7C0032CEA5 /* HelloCoreMLApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03BBFF2A17BE7C0032CEA5 /* HelloCoreMLApp.swift */; };
 		8D03BC022A17BE7C0032CEA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03BC012A17BE7C0032CEA5 /* ContentView.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		6E1D26562C9C751800A0EB5D /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
+		6E1D26582C9D238300A0EB5D /* ObservationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationListView.swift; sourceTree = "<group>"; };
 		8D03582A2A1D0F6C0023EC50 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8D03BBFC2A17BE7C0032CEA5 /* HelloCoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D03BBFF2A17BE7C0032CEA5 /* HelloCoreMLApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloCoreMLApp.swift; sourceTree = "<group>"; };
@@ -40,6 +42,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E1D265A2C9D247500A0EB5D /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				8D03BC112A17CC9F0032CEA5 /* NumberFormatter+Extensions.swift */,
+				8D03BC0F2A17C6140032CEA5 /* UIImage+Extensions.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		8D03BBF32A17BE7C0032CEA5 = {
 			isa = PBXGroup;
 			children = (
@@ -59,14 +70,14 @@
 		8D03BBFE2A17BE7C0032CEA5 /* HelloCoreML */ = {
 			isa = PBXGroup;
 			children = (
+				6E1D265A2C9D247500A0EB5D /* Extentions */,
 				6E1D26562C9C751800A0EB5D /* YOLOv3Tiny.mlmodel */,
 				8D03BBFF2A17BE7C0032CEA5 /* HelloCoreMLApp.swift */,
 				8D03BC012A17BE7C0032CEA5 /* ContentView.swift */,
 				8D03BC032A17BE7D0032CEA5 /* Assets.xcassets */,
 				8D03BC052A17BE7D0032CEA5 /* Preview Content */,
-				8D03BC0F2A17C6140032CEA5 /* UIImage+Extensions.swift */,
-				8D03BC112A17CC9F0032CEA5 /* NumberFormatter+Extensions.swift */,
 				8D03582A2A1D0F6C0023EC50 /* ImagePicker.swift */,
+				6E1D26582C9D238300A0EB5D /* ObservationListView.swift */,
 			);
 			path = HelloCoreML;
 			sourceTree = "<group>";
@@ -149,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1D26592C9D238300A0EB5D /* ObservationListView.swift in Sources */,
 				8D03BC022A17BE7C0032CEA5 /* ContentView.swift in Sources */,
 				8D03BC122A17CC9F0032CEA5 /* NumberFormatter+Extensions.swift in Sources */,
 				8D03582B2A1D0F6C0023EC50 /* ImagePicker.swift in Sources */,
